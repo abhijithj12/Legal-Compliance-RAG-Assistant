@@ -1,114 +1,94 @@
-⚖️ Legal Compliance RAG Assistant
-<p align="center"> <b>Domain-Restricted Legal & Compliance Question-Answering System</b><br> Built with LangChain · Groq (LLaMA 3.1) · ChromaDB · HuggingFace · Streamlit </p> <p align="center"> <img src="https://img.shields.io/badge/Python-3.10+-blue.svg" /> <img src="https://img.shields.io/badge/LangChain-RAG-green" /> <img src="https://img.shields.io/badge/VectorDB-ChromaDB-orange" /> <img src="https://img.shields.io/badge/LLM-LLaMA--3.1--8B-purple" /> <img src="https://img.shields.io/badge/License-MIT-lightgrey" /> </p>
-📖 Overview
+# ⚖️ Legal Compliance RAG Assistant
 
-The Legal Compliance RAG Assistant is a Retrieval-Augmented Generation (RAG) system that allows users to upload legal/compliance PDF documents and ask contextual questions grounded strictly in the uploaded content.
+An AI-powered **Legal & Compliance Question-Answering System** built using **LangChain, Groq (LLaMA 3.1), ChromaDB, HuggingFace Embeddings, and Streamlit**.
 
-The system enforces domain restriction, preventing answers outside legal and compliance topics and minimizing hallucinations by relying only on retrieved document context.
+Upload legal/compliance PDF documents and ask contextual questions using a **Retrieval-Augmented Generation (RAG)** pipeline.
 
-🚀 Features
+---
 
-📄 Upload multiple legal/compliance PDF documents
+## 🚀 Live Capabilities
 
-🧠 Automatic compliance-document validation
+- 📄 Upload multiple legal PDF documents  
+- 🧠 Automatic compliance-document validation  
+- ✂️ Intelligent document chunking  
+- 🔎 Semantic search using vector embeddings  
+- 🤖 LLaMA 3.1 (8B) powered responses via Groq  
+- 🛡 Strict domain-restricted answering (legal/compliance only)  
+- 🎯 Context-based answers (No hallucination beyond uploaded documents)  
+- 🌐 Clean Streamlit web interface  
 
-✂️ Intelligent document chunking
+---
 
-🔎 Semantic search using vector embeddings
+## 🧠 Architecture Overview
 
-🤖 LLaMA 3.1 (8B) responses via Groq API
+### 1️⃣ Document Processing Pipeline
 
-🛡 Strict legal-domain enforcement
-
-🎯 Context-based answers (no external knowledge)
-
-🌐 Interactive Streamlit interface
-
-🧠 System Architecture
-1️⃣ Document Processing Pipeline
-
-Upload PDF files
-
-Extract text using PyPDFLoader
-
-Validate document relevance (keyword-based compliance detection)
-
-Split documents using RecursiveCharacterTextSplitter
-
-Generate embeddings with:
+- Upload PDFs  
+- Extract text using `PyPDFLoader`  
+- Validate document relevance using keyword-based compliance detection  
+- Split text into chunks using `RecursiveCharacterTextSplitter`  
+- Generate embeddings using:
 
 Alibaba-NLP/gte-base-en-v1.5
 
 
-Store vectors in ChromaDB (persistent storage)
+- Store vectors in ChromaDB (persistent storage)
 
-2️⃣ RAG Question Answering Flow
+---
 
-User submits a query
+### 2️⃣ RAG Question Answering Flow
 
-Retrieve top 5 relevant document chunks
+- User asks a question  
+- Retrieve top 5 relevant chunks from vector store  
+- Inject retrieved context into a structured legal-compliance prompt  
+- Query LLaMA 3.1 via Groq API  
+- Return professional and analytical response  
 
-Inject retrieved context into structured legal prompt
+---
 
-Query LLaMA 3.1 (8B) via Groq
-
-Return professional, analytical response
-
-If:
-
-❌ Question is unrelated →
-"This system only answers legal and compliance related questions."
-
-❓ Answer not in context →
-"I don't know."
-
-🏗 Project Structure
+## 🏗 Project Structure
 
 Legal-Compliance-RAG-Assistant/
 │
 ├── main.py # Streamlit frontend
-├── project1.py # Core RAG logic
-├── vectorstore/ # Persistent Chroma storage
+├── project1.py # Core RAG + processing logic
+├── vectorstore/ # Chroma persistent storage
 ├── .env # Environment variables (not committed)
-├── pyproject.toml # Dependencies
+├── pyproject.toml # Dependency definitions
 ├── uv.lock # Locked dependency versions
 └── README.md
 
-⚙️ Installation & Setup
-1️⃣ Clone Repository
 
+---
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone the Repository
+
+```bash
 git clone https://github.com/abhijithj12/Legal-Compliance-RAG-Assistant.git
-
 cd Legal-Compliance-RAG-Assistant
-
 2️⃣ Install Dependencies (Using uv)
-
 This project uses uv for dependency management.
 
 uv sync
-
 No requirements.txt is required.
 
-3️⃣ Configure Environment Variables
-
-Create a .env file:
+3️⃣ Setup Environment Variables
+Create a .env file in the root directory:
 
 GROQ_API_KEY=your_groq_api_key_here
+Get your API key from:
 
-Get your key from:
 https://console.groq.com/
 
 4️⃣ Run the Application
-
 streamlit run main.py
-
-App will launch at:
+The app will open at:
 
 http://localhost:8501
-
 🛡 Compliance Validation Logic
-
-Before indexing, the system ensures the document contains at least three legal/compliance-related keywords, such as:
+Before storing documents, the system checks for at least 3 legal/compliance-related keywords, such as:
 
 policy
 
@@ -128,69 +108,89 @@ data protection
 
 breach
 
-Non-compliant documents are rejected.
+If the document is not classified as a compliance document, it is rejected.
+
+💬 Question Answering Rules
+The system:
+
+✅ Answers only if related to:
+Policies
+
+Regulations
+
+Legal clauses
+
+Compliance requirements
+
+Risk management
+
+Governance
+
+❌ If unrelated:
+"This system only answers legal and compliance related questions."
+
+❓ If answer not found in context:
+"I don't know."
 
 🧩 Tech Stack
-Layer	Technology
-LLM	Groq (LLaMA 3.1-8B-Instant)
-Embeddings	HuggingFace gte-base-en-v1.5
-Vector Database	ChromaDB
-Framework	LangChain
-Frontend	Streamlit
-PDF Parsing	PyPDFLoader
-Dependency Management	uv
-📌 Use Cases
+LLM: Groq (LLaMA 3.1-8B-Instant)
 
+Embeddings: HuggingFace gte-base-en-v1.5
+
+Vector Database: ChromaDB
+
+Framework: LangChain
+
+Frontend: Streamlit
+
+PDF Parsing: PyPDFLoader
+
+Environment Management: uv
+
+📌 Example Use Cases
 Corporate compliance auditing
 
 Regulatory document review
 
 Policy interpretation
 
-Legal clause analysis
+Legal clause explanation
 
-Risk & governance assessment
+Risk & governance analysis
 
 Data protection compliance review
 
 ⚠️ Limitations
-
 English documents only
 
 Requires compliance-related PDFs
 
-No external knowledge access
+Answers strictly from uploaded documents
 
-No conversation memory (single-turn queries)
+No internet access or external knowledge
 
 🔮 Future Improvements
-
 ML-based document classification
-
-Citation highlighting in answers
 
 Multi-language support
 
-Authentication & role-based access
+Authentication & user sessions
 
 Cloud deployment (AWS / GCP / Azure)
 
-Conversational memory
+Conversation memory
 
-Docker containerization
+Admin dashboard
 
 🤝 Contributing
-
 Pull requests are welcome.
 
-For major changes, please open an issue first to discuss improvements.
+For major changes, please open an issue first to discuss what you would like to change.
 
 📜 License
-
 This project is licensed under the MIT License.
 
 👤 Author
-
 Abhijith J
-AI / Generative AI Enthusiast
+AI / GenAI Enthusiast
 GitHub: https://github.com/abhijithj12
