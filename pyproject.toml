@@ -1,0 +1,20 @@
+[project]
+name = "gen-ai-by-me"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "langchain-chroma>=1.1.0",
+    "langchain-community>=0.4.1",
+    "langchain-core>=1.2.12",
+    "langchain-groq>=1.1.2",
+    "langchain-huggingface>=1.2.0",
+    "langchain-text-splitters>=1.1.0",
+    "python-dotenv>=1.2.1",
+    "sentence-transformers>=5.2.2",
+    "streamlit>=1.54.0",
+    "torch>=2.10.0",
+    "transformers>=4.57.6",
+    "unstructured>=0.20.2",
+]
