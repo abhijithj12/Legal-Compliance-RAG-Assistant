@@ -23,7 +23,7 @@ def initialization():
     global vector_store
     if llm is None or vector_store is None:
         llm=ChatGroq(model_name="llama-3.1-8b-instant",temperature=0.4,max_tokens=800)
-        vector_store=Chroma(collection_name="Legal / Compliance Document Store",embedding_function=ef,persist_directory=Path("vectorstore"))
+        vector_store=Chroma(collection_name="legal_compliance_document_store",embedding_function=ef,persist_directory=Path("vectorstore"))
     print("Initialization Completed")
 
 
@@ -53,7 +53,7 @@ def process_pdfs(uploaded_files):
         vector_store.delete_collection()
 
     
-    vector_store=Chroma(collection_name="Legal / Compliance Document Store",embedding_function=ef,persist_directory=Path("vectorstore"))
+    vector_store=Chroma(collection_name="legal_compliance_document_store",embedding_function=ef,persist_directory=Path("vectorstore"))
     
    
     all_docs = []

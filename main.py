@@ -1,7 +1,7 @@
 import streamlit as st
 from project1 import process_pdfs, question_answer
 
-st.title("📄 Compliance Intelligence Assistant")
+st.title("Legal and Compliance AI Assistant")
 
 uploaded_files = st.sidebar.file_uploader(
     "Upload your documents",
